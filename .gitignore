@@ -1,0 +1,29 @@
+# Node / pnpm
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+packages/*/dist/
+*.tsbuildinfo
+
+# Test
+coverage/
+.vitest/
+
+# Local env
+.env
+.env.local
+
+# Changesets
+.changeset/*.md
+!.changeset/README.md
+!.changeset/config.json
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
