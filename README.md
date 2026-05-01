@@ -14,7 +14,7 @@ Design rationale per package: <https://plinth.run/sdk/ts/>.
 | [`@plinth-dev/authz-react`](./packages/authz-react) | **shipped** · pre-release | `<PermissionsProvider>` / `usePermissions()` / `<Can>` / `<CanAny>` / `<CanAll>` — batched-check-at-layout. |
 | `@plinth-dev/forms` | not yet shipped | Server-action forms with Zod validation; `<FormWrapper>` + `<FormField>`. |
 | `@plinth-dev/tables` | not yet shipped | Headless data tables with URL state via `nuqs`. |
-| `@plinth-dev/otel-web` | not yet shipped | Browser OpenTelemetry SDK init with auto-instrumentations. |
+| [`@plinth-dev/otel-web`](./packages/otel-web) | **shipped** · pre-release | Browser OpenTelemetry SDK init; fetch + document-load auto-instrumented; trace propagation to backend. |
 
 Each shipped package has its own `package.json`, semver pre-release version, README, and minimal dependency surface.
 

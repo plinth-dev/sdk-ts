@@ -251,9 +251,9 @@ describe("checkActions", () => {
       { kind: "Item", id: "i1" },
       ["read", "update", "delete"],
     );
-    expect(decisions["read"]?.allowed).toBe(true);
-    expect(decisions["update"]?.allowed).toBe(true);
-    expect(decisions["delete"]?.allowed).toBe(false);
+    expect(decisions.read?.allowed).toBe(true);
+    expect(decisions.update?.allowed).toBe(true);
+    expect(decisions.delete?.allowed).toBe(false);
     expect(fake.calls.checkResource).toBe(1);
   });
 
