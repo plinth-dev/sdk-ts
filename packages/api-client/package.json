@@ -1,0 +1,50 @@
+{
+  "name": "@plinth-dev/api-client",
+  "version": "0.1.0-pre",
+  "description": "Server-only typed fetch wrapper — never throws on HTTP errors.",
+  "license": "MIT",
+  "homepage": "https://plinth.run/sdk/ts/api-client/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plinth-dev/sdk-ts.git",
+    "directory": "packages/api-client"
+  },
+  "bugs": {
+    "url": "https://github.com/plinth-dev/sdk-ts/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .tsbuildinfo"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.4.1",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

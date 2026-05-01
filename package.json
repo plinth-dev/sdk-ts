@@ -1,0 +1,30 @@
+{
+  "name": "@plinth-dev/sdk-ts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Plinth TypeScript SDK monorepo",
+  "license": "MIT",
+  "homepage": "https://plinth.run/sdk/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plinth-dev/sdk-ts.git"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter='./packages/*' run build",
+    "test": "pnpm -r --filter='./packages/*' run test",
+    "typecheck": "pnpm -r --filter='./packages/*' run typecheck",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "clean": "pnpm -r --filter='./packages/*' run clean"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.13",
+    "tsup": "^8.4.1",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.4"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=20"
+  }
+}
