@@ -12,16 +12,43 @@
  * See https://plinth.run/sdk/ts/api-client/ for the design rationale.
  */
 
+// `import "server-only"` is the React Server Components build-time
+// guard: any Client Component that imports this module fails the
+// build with a clear error. Tests stub this via require.cache
+// pre-population in vitest.setup.ts (Vitest doesn't apply Next.js's
+// `react-server` export condition, so the runtime check throws
+// without the stub).
+import "server-only";
+
 // ── Public types ────────────────────────────────────────────────────
 
-/** A successful or failed API response, never an exception. */
-export interface ApiResponse<T> {
-  /** Parsed body for 2xx responses; `null` for non-2xx, network errors, timeouts. */
-  data: T | null;
-  /** True iff the response was 2xx and decoded successfully. */
-  success: boolean;
-  /** Populated for non-2xx, network errors, and timeouts. */
-  error: ApiError | null;
+/**
+ * A successful or failed API response, never an exception. Discriminated
+ * on `success` so TypeScript narrows `data` and `error` automatically:
+ *
+ *   const r = await api("items").get<Item>("/items/abc");
+ *   if (r.success) {
+ *     // r.data is Item, r.error is never
+ *     return r.data.name;
+ *   } else {
+ *     // r.error is ApiError, r.data is never
+ *     return r.error.message;
+ *   }
+ */
+export type ApiResponse<T> = ApiResponseOk<T> | ApiResponseErr;
+
+export interface ApiResponseOk<T> {
+  success: true;
+  data: T;
+  error?: never;
+  /** Always populated. Includes the HTTP status. */
+  meta: ApiResponseMeta;
+}
+
+export interface ApiResponseErr {
+  success: false;
+  data?: never;
+  error: ApiError;
   /** Always populated. Includes the HTTP status (0 for network errors). */
   meta: ApiResponseMeta;
 }
@@ -356,7 +383,6 @@ async function parseResponse<T>(res: Response): Promise<ApiResponse<T>> {
         data = (await res.json()) as T;
       } catch (err) {
         return {
-          data: null,
           success: false,
           error: {
             status: res.status,
@@ -374,7 +400,10 @@ async function parseResponse<T>(res: Response): Promise<ApiResponse<T>> {
         data = null;
       }
     }
-    return { data, success: true, error: null, meta };
+    // 2xx: cast `data` to T. For 204 No Content the runtime value is
+    // null even though the type says T — callers of 204 endpoints
+    // should declare T as `void` or `undefined`.
+    return { data: data as T, success: true, meta };
   }
 
   // Non-2xx: attempt RFC 7807 problem+json parsing, fall back to text.
@@ -385,7 +414,6 @@ async function parseResponse<T>(res: Response): Promise<ApiResponse<T>> {
     try {
       const parsed = (await res.json()) as ProblemBody;
       return {
-        data: null,
         success: false,
         error: {
           status: res.status,
@@ -407,7 +435,6 @@ async function parseResponse<T>(res: Response): Promise<ApiResponse<T>> {
     // ignore
   }
   return {
-    data: null,
     success: false,
     error: {
       status: res.status,
@@ -441,7 +468,6 @@ function networkError<T>(err: unknown): ApiResponse<T> {
     (err as { name?: string })?.name === "TimeoutError"
   ) {
     return {
-      data: null,
       success: false,
       error: { status: 0, code: "timeout", message: errMessage(err) },
       meta: { status: 0 },
@@ -450,14 +476,12 @@ function networkError<T>(err: unknown): ApiResponse<T> {
   // AbortError raised by external signal (caller cancelled)
   if ((err as { name?: string })?.name === "AbortError") {
     return {
-      data: null,
       success: false,
       error: { status: 0, code: "aborted", message: errMessage(err) },
       meta: { status: 0 },
     };
   }
   return {
-    data: null,
     success: false,
     error: { status: 0, code: "network", message: errMessage(err) },
     meta: { status: 0 },

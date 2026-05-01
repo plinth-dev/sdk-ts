@@ -78,8 +78,10 @@ describe("happy path", () => {
 
     const res = await api("foo").get<{ hello: string }>("/items");
     expect(res.success).toBe(true);
-    expect(res.error).toBeNull();
-    expect(res.data?.hello).toBe("world");
+    expect(res.error).toBeUndefined();
+    if (res.success) {
+      expect(res.data.hello).toBe("world");
+    }
     expect(res.meta.status).toBe(200);
   });
 
@@ -89,7 +91,12 @@ describe("happy path", () => {
 
     const res = await api("foo").delete("/items/abc");
     expect(res.success).toBe(true);
-    expect(res.data).toBeNull();
+    if (res.success) {
+      // 204 has no body — `data` is `null` at runtime even though the
+      // discriminated-union type narrows it to `T`. Callers of 204
+      // endpoints should declare T as `void`/`undefined`.
+      expect(res.data).toBeNull();
+    }
     expect(res.meta.status).toBe(204);
   });
 

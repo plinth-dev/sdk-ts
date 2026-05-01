@@ -1,7 +1,7 @@
 {
   "name": "@plinth-dev/tables",
-  "version": "0.1.1-pre",
-  "description": "Headless data tables with URL state. ServerTable + useTableUrlState + parseTableSearchParams. nuqs + TanStack Table under the hood.",
+  "version": "0.1.2-pre",
+  "description": "Headless data tables with URL state via next/navigation. ServerTable + useTableUrlState + parseTableSearchParams. TanStack Table under the hood.",
   "license": "MIT",
   "homepage": "https://plinth.run/sdk/ts/tables/",
   "repository": {

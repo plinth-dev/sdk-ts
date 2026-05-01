@@ -42,9 +42,9 @@ describe("parseTableSearchParams — pagination", () => {
 });
 
 describe("parseTableSearchParams — sort", () => {
-  it("defaults sortBy to '' and sortOrder to 'asc'", () => {
+  it("defaults sortBy to null and sortOrder to 'asc'", () => {
     const r = parseTableSearchParams({}, ["name"]);
-    expect(r.sortBy).toBe("");
+    expect(r.sortBy).toBeNull();
     expect(r.sortOrder).toBe("asc");
   });
 
@@ -62,7 +62,7 @@ describe("parseTableSearchParams — sort", () => {
       { sortBy: "DROP TABLE users", sortOrder: "asc" },
       ["created_at", "name"],
     );
-    expect(r.sortBy).toBe("");
+    expect(r.sortBy).toBeNull();
   });
 
   it("normalises sortOrder to 'asc' for any non-'desc' value", () => {

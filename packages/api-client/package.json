@@ -1,6 +1,6 @@
 {
   "name": "@plinth-dev/api-client",
-  "version": "0.1.0-pre",
+  "version": "0.1.1-pre",
   "description": "Server-only typed fetch wrapper — never throws on HTTP errors.",
   "license": "MIT",
   "homepage": "https://plinth.run/sdk/ts/api-client/",
@@ -28,6 +28,9 @@
     "LICENSE"
   ],
   "sideEffects": false,
+  "dependencies": {
+    "server-only": "^0.0.1"
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",

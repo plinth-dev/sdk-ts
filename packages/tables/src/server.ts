@@ -16,8 +16,12 @@ export type SearchParamsRecord = Record<string, string | string[] | undefined>;
 export interface ParsedTableParams {
   page: number;
   pageSize: number;
-  /** The validated sort column, or `""` if no valid sort is set. */
-  sortBy: string;
+  /**
+   * The validated sort column, or `null` if no valid sort is set.
+   * Matches `useTableUrlState().sortBy` so the same shape works on
+   * both sides of the network.
+   */
+  sortBy: string | null;
   sortOrder: "asc" | "desc";
   /** Raw search string, or `null` if absent / empty. */
   search: string | null;
@@ -56,7 +60,8 @@ export function parseTableSearchParams(
   );
 
   const rawSort = readString(searchParams.sortBy);
-  const sortBy = rawSort && allowedSortColumns.includes(rawSort) ? rawSort : "";
+  const sortBy: string | null =
+    rawSort && allowedSortColumns.includes(rawSort) ? rawSort : null;
   const sortOrder =
     readString(searchParams.sortOrder) === "desc" ? "desc" : "asc";
 
