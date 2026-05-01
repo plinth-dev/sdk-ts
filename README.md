@@ -13,7 +13,7 @@ Design rationale per package: <https://plinth.run/sdk/ts/>.
 | [`@plinth-dev/authz`](./packages/authz) | **shipped** · pre-release | Server-only Cerbos gRPC wrapper; fail-closed Decision; bypass rejected at startup in production. |
 | [`@plinth-dev/authz-react`](./packages/authz-react) | **shipped** · pre-release | `<PermissionsProvider>` / `usePermissions()` / `<Can>` / `<CanAny>` / `<CanAll>` — batched-check-at-layout. |
 | [`@plinth-dev/forms`](./packages/forms) | **shipped** · pre-release | Server-action forms with Zod validation; `createAction` + `<FormWrapper>` + `<FormField>` + `useFormContext`. |
-| `@plinth-dev/tables` | not yet shipped | Headless data tables with URL state via `nuqs`. |
+| [`@plinth-dev/tables`](./packages/tables) | **shipped** · pre-release | Headless data tables with URL state; `<ServerTable>` + `useTableUrlState` + `parseTableSearchParams`. |
 | [`@plinth-dev/otel-web`](./packages/otel-web) | **shipped** · pre-release | Browser OpenTelemetry SDK init; fetch + document-load auto-instrumented; trace propagation to backend. |
 
 Each shipped package has its own `package.json`, semver pre-release version, README, and minimal dependency surface.
@@ -54,7 +54,7 @@ CI runs `pnpm install --frozen-lockfile`, then per-package `build` + `test` + `t
     │   ├── README.md   LICENSE
     │   └── dist/                   # built; gitignored
     ├── api-client/                 # @plinth-dev/api-client
-    └── ...                         # one more package still to ship: tables
+    └── tables/                     # @plinth-dev/tables (final SDK package)
 ```
 
 ## Versioning
