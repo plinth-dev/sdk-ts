@@ -1,10 +1,11 @@
 # Plinth — TypeScript SDK
 
+> **Status: not yet released — Phase B in progress.**
+> The seven package names are reserved on npm with `0.0.0-reserved` placeholders (deprecated; you'll see a warning if you install one). API surfaces are being designed; the first usable release per package will be `v0.1.0`. Track design ADRs at [plinth.run/sdk](https://plinth.run/sdk/) and progress on the [roadmap](https://github.com/plinth-dev/.github/blob/main/ROADMAP.md).
+
 A pnpm-workspaces monorepo. Each workspace ships as an independently-versioned npm package under `@plinth-dev`. Split for tree-shaking and selective adoption.
 
-> **Status: v0.1.0 — Phase B in progress.** API surfaces are being designed; expect breaking changes until each package is tagged at `v0.1.0`.
-
-## Packages
+## Planned packages
 
 | Package | Responsibility |
 | --- | --- |
@@ -16,15 +17,15 @@ A pnpm-workspaces monorepo. Each workspace ships as an independently-versioned n
 | [`@plinth-dev/tables`](./packages/tables) | Headless data tables with URL state via `nuqs` |
 | [`@plinth-dev/env`](./packages/env) | Zod-schema-validated env vars; fail-fast at module load |
 
-## Install
+## Install (once shipped)
 
 ```bash
 pnpm add @plinth-dev/authz-react
 ```
 
-Each package has its own README with copy-paste install + minimal example.
+Each package will have its own README with copy-paste install + minimal example.
 
-## Local development
+## Local development (target)
 
 ```bash
 pnpm install              # install all workspace deps
@@ -35,9 +36,9 @@ pnpm changeset            # propose a release
 
 ## Design intent
 
-The API surface for each package is documented in detail at [plinth.run/sdk](https://plinth.run/sdk/). This repo holds the implementations.
+The API surface for each package is being documented at [plinth.run/sdk](https://plinth.run/sdk/) ahead of implementation. This repo will hold the implementations.
 
-## Layout
+## Planned layout
 
 ```
 .
