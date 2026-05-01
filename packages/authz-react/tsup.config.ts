@@ -8,6 +8,9 @@ export default defineConfig({
   sourcemap: true,
   target: "es2022",
   splitting: false,
-  treeshake: true,
+  // No treeshake — rollup's tree-shaking strips the top-level
+  // "use client" directive that Next.js reads to mark this as a
+  // Client Component module. Letting esbuild run alone preserves it.
   external: ["react"],
+  banner: { js: '"use client";' },
 });
