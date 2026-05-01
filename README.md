@@ -10,8 +10,8 @@ Design rationale per package: <https://plinth.run/sdk/ts/>.
 | --- | --- | --- |
 | [`@plinth-dev/env`](./packages/env) | **shipped** · pre-release | Zod-validated env vars; fail-fast at module load. |
 | [`@plinth-dev/api-client`](./packages/api-client) | **shipped** · pre-release | Server-only typed fetch wrapper; never throws; RFC 7807 problem+json auto-parse. |
-| `@plinth-dev/authz` | not yet shipped | Server-only Cerbos gRPC wrapper; mirrors the Go SDK semantics. |
-| `@plinth-dev/authz-react` | not yet shipped | `<PermissionsProvider>` / `usePermissions()` / `<Can>` — batched-check-at-layout. |
+| [`@plinth-dev/authz`](./packages/authz) | **shipped** · pre-release | Server-only Cerbos gRPC wrapper; fail-closed Decision; bypass rejected at startup in production. |
+| [`@plinth-dev/authz-react`](./packages/authz-react) | **shipped** · pre-release | `<PermissionsProvider>` / `usePermissions()` / `<Can>` / `<CanAny>` / `<CanAll>` — batched-check-at-layout. |
 | `@plinth-dev/forms` | not yet shipped | Server-action forms with Zod validation; `<FormWrapper>` + `<FormField>`. |
 | `@plinth-dev/tables` | not yet shipped | Headless data tables with URL state via `nuqs`. |
 | `@plinth-dev/otel-web` | not yet shipped | Browser OpenTelemetry SDK init with auto-instrumentations. |
