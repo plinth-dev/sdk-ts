@@ -1,6 +1,6 @@
 {
   "name": "@plinth-dev/authz",
-  "version": "0.1.0-pre",
+  "version": "0.1.0",
   "description": "Server-only Cerbos PDP client. Fail-closed Decision; bypass-mode rejected at startup in production. Mirrors sdk-go/authz.",
   "license": "MIT",
   "homepage": "https://plinth.run/sdk/ts/authz/",

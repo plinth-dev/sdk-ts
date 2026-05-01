@@ -1,6 +1,6 @@
 {
   "name": "@plinth-dev/env",
-  "version": "0.1.0-pre",
+  "version": "0.1.0",
   "description": "Zod-validated environment variables — fail-fast at module load.",
   "license": "MIT",
   "homepage": "https://plinth.run/sdk/ts/env/",

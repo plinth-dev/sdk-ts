@@ -1,6 +1,6 @@
 {
   "name": "@plinth-dev/forms",
-  "version": "0.1.1-pre",
+  "version": "0.1.0",
   "description": "Server-action forms with Zod validation. createAction factory + FormWrapper/FormField client bindings + useFormContext hook.",
   "license": "MIT",
   "homepage": "https://plinth.run/sdk/ts/forms/",

@@ -1,6 +1,6 @@
 {
   "name": "@plinth-dev/otel-web",
-  "version": "0.1.0-pre",
+  "version": "0.1.0",
   "description": "Browser OpenTelemetry SDK init — fetch + document-load auto-instrumentation, OTLP/HTTP export, traceparent propagation. Privacy by default.",
   "license": "MIT",
   "homepage": "https://plinth.run/sdk/ts/otel-web/",
