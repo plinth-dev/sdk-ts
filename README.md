@@ -2,7 +2,7 @@
 
 A pnpm-workspaces monorepo. Each workspace ships as an independently-versioned npm package under `@plinth-dev`. Split for tree-shaking and selective adoption.
 
-Design rationale per package: <https://plinth.run/sdk/ts/>.
+Design rationale per package: <https://plinth.run/sdk/>.
 
 ## Packages
 
